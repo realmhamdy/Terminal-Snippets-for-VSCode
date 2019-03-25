@@ -11,7 +11,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"*"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -23,7 +23,8 @@
 					"commandThisFile.commands": {
 						"type": "array",
 						"description": "The command names and their templates",
-						"examples": [{"name": "test", "template": "python -m unittest $1"}]
+						"examples": [{"name": "test", "template": "python -m unittest $1"}],
+						"default": []
 					}
 				}
 			}
