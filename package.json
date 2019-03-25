@@ -15,10 +15,17 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [
+		"configuration": [
 			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
+				"type": "object",
+				"title": "Command configuration",
+				"properties": {
+					"commandThisFile.commands": {
+						"type": "array",
+						"description": "The command names and their templates",
+						"examples": [{"name": "test", "template": "python -m unittest $1"}]
+					}
+				}
 			}
 		]
 	},
