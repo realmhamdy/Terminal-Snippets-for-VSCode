@@ -7,8 +7,11 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "command-this-file" is now active!');
 
 	let commands = vscode.workspace.getConfiguration().get("commandThisFile.commands");
-	
+	context.subscriptions.push(vscode.commands.registerCommand("commandThisFile.popupCommandBox", (args): void => {
+		console.log("Please enter one of the configured commands: ");
+	}));
 }
+
 
 // this method is called when your extension is deactivated
 export function deactivate() {}

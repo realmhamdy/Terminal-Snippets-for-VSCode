@@ -28,6 +28,14 @@
 					}
 				}
 			}
+		],
+		"keybindings": [
+			{
+				"command": "commandThisFile.popupCommandBox",
+				"key": "ctrl+alt+c",
+				"mac": "cmd+option+c",
+				"when": "editorTextFocus"
+			}
 		]
 	},
 	"scripts": {
