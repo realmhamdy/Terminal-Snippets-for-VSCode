@@ -4,6 +4,7 @@ import * as path from "path";
 interface Snippet {
 	readonly name: string;
 	readonly template: string;
+	readonly newTerminal?: boolean;
 	readonly pathSep?: string;
 }
 
@@ -41,8 +42,8 @@ export function activate(context: vscode.ExtensionContext) {
 				processedSnippet = selectedSnippet.template.replace("${filename}", projectRelativeOpenedFilePath);
 			}
 			let activeTerminal = vscode.window.activeTerminal;
-			if (!activeTerminal) {
-				activeTerminal = vscode.window.createTerminal(selectedSnippetName);
+			if (!activeTerminal || selectedSnippet.newTerminal) {
+				activeTerminal = vscode.window.createTerminal(`Terminal Snippets-${selectedSnippet.name}`);
 			}
 			activeTerminal.show();
 			activeTerminal.sendText(processedSnippet);
