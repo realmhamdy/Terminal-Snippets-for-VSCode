@@ -1,7 +1,7 @@
 {
-	"name": "command-this-file",
-	"displayName": "Command This File",
-	"description": "Uses the path of the currently open file tab to build a command into the currently active shell",
+	"name": "terminal-snippets",
+	"displayName": "Terminal Snippets",
+	"description": "Configure command snippets to send to a terminal inside VSCode. The snippets can include a placeholder for the filename of the active editor tab.",
 	"version": "0.0.1",
 	"publisher": "ItJustWorX",
 	"engines": {
@@ -18,20 +18,26 @@
 		"configuration": [
 			{
 				"type": "object",
-				"title": "Command configuration",
+				"title": "Snippet configuration",
 				"properties": {
-					"commandThisFile.commands": {
+					"terminalSnippets.snippets": {
 						"type": "array",
-						"description": "The command names and their templates",
-						"examples": [{"name": "test", "template": "python -m unittest $1"}],
+						"description": "The snippet names and their templates",
+						"examples": [{"name": "test", "template": "python -m unittest ${filename}", "pathSep": "/"}],
 						"default": []
+					},
+					"terminalSnippets.defaultPathSep": {
+						"type": "string",
+						"description": "The default path separator to use for the file portion of the snippet. Can be overridden per snippet.",
+						"examples": ["/", "\\"],
+						"default": ""
 					}
 				}
 			}
 		],
 		"keybindings": [
 			{
-				"command": "commandThisFile.popupCommandBox",
+				"command": "terminalSnippets.popupSnippetBox",
 				"key": "ctrl+alt+c",
 				"mac": "cmd+option+c",
 				"when": "editorTextFocus"

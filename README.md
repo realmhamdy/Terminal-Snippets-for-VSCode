@@ -1,10 +1,13 @@
-# command-this-file README
-
-This is the README for your extension "command-this-file". After writing up a brief description, we recommend including the following sections.
+# Terminal Snippets README
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Configure command snippets to send to the active terminal, or, if there's no active terminal, a new one.
+
+The snippets will be sent directly to the terminal. If there's a `${filename}` placeholder in the snippet, it's
+ going to be replaced with the path of the file that's opened in the active editor tab.
+
+ TODO: screenshots
 
 For example if there is an image subfolder under your extension project workspace:
 
@@ -63,3 +66,4 @@ Added features X, Y, and Z.
 * [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**
+End my life
