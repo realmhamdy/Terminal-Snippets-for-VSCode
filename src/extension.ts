@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import * as path from "path";
 
-interface Snippet {
+export interface Snippet {
 	readonly name: string;
 	readonly template: string;
 	readonly newTerminal?: boolean;
@@ -32,7 +32,7 @@ export function handleSnippetWithFilename(snippet: Snippet): string {
 		let activeEditor = vscode.window.activeTextEditor;
 		if (!activeEditor) { return snippet.template; }
 		let openedFilePath = activeEditor.document.fileName;
-		// create a workspace-relative file path
+		// create a workspace-relative file path (can we make this optional per snippet?)
 		let currentlyOpenWorkspaceFolders = vscode.workspace.workspaceFolders;
 		if (!currentlyOpenWorkspaceFolders) { return snippet.template; }
 		let currentlyOpenWorkspaceFolder = currentlyOpenWorkspaceFolders[0];

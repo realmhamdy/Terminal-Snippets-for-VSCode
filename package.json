@@ -23,13 +23,22 @@
 					"terminalSnippets.snippets": {
 						"type": "array",
 						"description": "The snippet names and their templates",
-						"examples": [{"name": "test", "template": "python -m unittest ${filename}", "pathSep": "/"}],
+						"examples": [
+							{
+								"name": "test",
+								"template": "python -m unittest ${filename}",
+								"pathSep": "/"
+							}
+						],
 						"default": []
 					},
 					"terminalSnippets.defaultPathSep": {
 						"type": "string",
 						"description": "The default path separator to use for the file portion of the snippet. Can be overridden per snippet.",
-						"examples": ["/", "\\"],
+						"examples": [
+							"/",
+							"\\"
+						],
 						"default": ""
 					}
 				}
@@ -52,10 +61,12 @@
 		"test": "npm run compile && node ./node_modules/vscode/bin/test"
 	},
 	"devDependencies": {
-		"typescript": "^3.3.1",
-		"vscode": "^1.1.28",
-		"tslint": "^5.12.1",
+		"@types/mocha": "^2.2.42",
+		"@types/mock-require": "^2.0.0",
 		"@types/node": "^10.12.21",
-		"@types/mocha": "^2.2.42"
+		"mock-require": "^3.0.3",
+		"tslint": "^5.12.1",
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28"
 	}
 }
