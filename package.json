@@ -40,6 +40,12 @@
 							"\\"
 						],
 						"default": ""
+					},
+					"terminalSnippets.defaultFileForm": {
+						"type": "string",
+						"description": "The default type of file path substitution, whether absolute or relative",
+						"default": "a",
+						"enum": ["a", "r"]
 					}
 				}
 			}

@@ -1,4 +1,4 @@
-import { handlePathSeparators, Snippet } from "../extension";
+import { handlePathSeparators, Snippet } from "../../extension";
 import * as assert from "assert";
 import * as mockRequire from "mock-require";
 import * as path from "path";

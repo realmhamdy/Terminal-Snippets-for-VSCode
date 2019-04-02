@@ -6,6 +6,8 @@ export interface Snippet {
 	readonly template: string;
 	readonly newTerminal?: boolean;
 	readonly pathSep?: string;
+	// "a" for "absolute", "r" for "relative"
+	readonly fileForm?: "a" | "r";
 }
 
 export function activate(context: vscode.ExtensionContext) {
@@ -32,13 +34,15 @@ export function handleSnippetWithFilename(snippet: Snippet): string {
 		let activeEditor = vscode.window.activeTextEditor;
 		if (!activeEditor) { return snippet.template; }
 		let openedFilePath = activeEditor.document.fileName;
-		// create a workspace-relative file path (can we make this optional per snippet?)
-		let currentlyOpenWorkspaceFolders = vscode.workspace.workspaceFolders;
-		if (!currentlyOpenWorkspaceFolders) { return snippet.template; }
-		let currentlyOpenWorkspaceFolder = currentlyOpenWorkspaceFolders[0];
-		let projectRelativeOpenedFilePath = openedFilePath.replace(currentlyOpenWorkspaceFolder.uri.fsPath, "");
-		projectRelativeOpenedFilePath = handlePathSeparators(snippet, projectRelativeOpenedFilePath);
-		return snippet.template.replace("${filename}", projectRelativeOpenedFilePath);
+		let finalFilePath = openedFilePath;
+		if (snippet.fileForm === "r" || 
+			(snippet.fileForm === undefined && vscode.workspace.getConfiguration().get("terminalSnippets.defaultFileForm") === "r")) {
+				let currentlyOpenWorkspaceFolders = vscode.workspace.workspaceFolders;
+				if (!currentlyOpenWorkspaceFolders) { return snippet.template; }
+				let workspaceRelativeOpenedFilePath = vscode.workspace.asRelativePath(openedFilePath);
+				finalFilePath = handlePathSeparators(snippet, workspaceRelativeOpenedFilePath);
+		}
+		return snippet.template.replace("${filename}", finalFilePath);
 	}
 	return snippet.template;
 }
