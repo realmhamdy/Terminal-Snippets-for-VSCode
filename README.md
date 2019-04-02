@@ -1,69 +1,45 @@
-# Terminal Snippets README
+# Terminal Snippets
 
-## Features
+Are you tired of having to type the same terminal commands over and over again?
 
-Configure command snippets to send to the active terminal, or, if there's no active terminal, a new one.
+**Terminal Snippets** is a [VSCode](https://code.visualstudio.com/) extension that helps you define commands/snippets to be sent to
+ the terminal built-in to VSCode.
 
-The snippets will be sent directly to the terminal. If there's a `${filename}` placeholder in the snippet, it's
- going to be replaced with the path of the file that's opened in the active editor tab.
+![In Action](resources/ad1.gif)
 
- TODO: screenshots
+## Usage
 
-For example if there is an image subfolder under your extension project workspace:
+Configure some command snippets in the `terminalSnippets.snippets` setting. A **snippet** is a JSON object with the following properties:
 
-\!\[feature X\]\(images/feature-x.png\)
+- **name**: The snippet name. This name is going to be displayed in a dropdown list of your snippets so you can recognize it.
+- **template**: The snippet/command content. It's called *template* because you can put a `${filename}` in it and it'll be
+  substituted with the path of the currently open file in the editor. This is useful if, for example, when you define a command
+  to submit the open file to your test runner.
+  
+### Example
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+You may define a snippet like this:
 
-## Requirements
+```
+{
+    "name": "test",
+    "template": "test-suite --arg1 --arg2 ${filename}"
+}
+```
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- **newTerminal** \[*optional*\]: A **boolean** to indicate whether the snippet should launch in a new terminal tab. By default it runs in the currently active tab or, if there's not one, a new one is opened.
+- **pathSep** \[*optional*\]: A **string** the defines the path separator to use when passing the path of the opened file to the snippet. This is useful for me because when I use Windows for development but want to a pass a command with a `${filename}` template in it to Docker with the Linux path separator. By default it uses the current path separator for your system.
+- **fileForm** \[*optional*\]: A **string** that defines whether the file path substituted in the snippet will be absolute or relative to your workspace. This is useful, again, in Docker scenarios. By default it's absolute **a**. Use **r** for relative.
 
-## Extension Settings
+Then use the keyboard shortcut <kbd>ALT</kbd>+<kbd>CTRL</kbd>+<kbd>C</kbd> to see a selection of your defined snippets. Select one to use it!
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## Other Configuration Options
 
-For example:
+In addition to the `terminalSnippets.snippets` setting described above, there are some defaults that you may find useful:
 
-This extension contributes the following settings:
+- `terminalSnippets.defaultPathSep`: A global default for the `pathSep` property of all your snippets.
+- `terminalSnippets.defaultFileForm`: Same for `fileForm` property.
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+## Contributing
 
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
-End my life
+If the extension is not working for you or you have an idea you want implemented, submit an issue or a PR.
