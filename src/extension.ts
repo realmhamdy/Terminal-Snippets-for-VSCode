@@ -73,7 +73,7 @@ export function handlePathSeparators(snippet: Snippet, openedFilePath: string): 
 export function sendSnippetToTerminal(snippet: Snippet, processedSnippet: string): void {
 	let activeTerminal = vscode.window.activeTerminal;
 	if (!activeTerminal || snippet.newTerminal) {
-		activeTerminal = vscode.window.createTerminal(`Terminal Snippets-${snippet.name}`);
+		activeTerminal = vscode.window.createTerminal(snippet.name);
 	}
 	activeTerminal.show();
 	activeTerminal.sendText(processedSnippet);
